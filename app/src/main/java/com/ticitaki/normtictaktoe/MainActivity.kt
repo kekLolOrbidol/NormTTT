@@ -1,15 +1,25 @@
 package com.ticitaki.normtictaktoe
 
 
-import android.annotation.SuppressLint
+import android.app.Activity
+import android.content.Context
+import android.content.IntentFilter
 import android.graphics.Color
+import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.browser.customtabs.CustomTabsIntent
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
+import com.facebook.applinks.AppLinkData
+import com.ticitaki.normtictaktoe.R
 
 
 class MainActivity : AppCompatActivity() {
@@ -21,14 +31,47 @@ class MainActivity : AppCompatActivity() {
     var scorep2 = 0
     var scoreA2 = 0
     var scoreA1 = 0
+    var xColor = Color.BLACK
+    var oColor = Color.RED
+
+
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        getColorFromSp()
         val extras = intent.extras
         val name = extras?.getString("name")
         if(name == "Memorama") autoplayer = true
         reset()
     }
+
+
+
+
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+    fun getColorFromSp(){
+        val pref = getSharedPreferences("BACKGROUND", Context.MODE_PRIVATE)
+        val pref2 = getSharedPreferences("OCOLOR", Context.MODE_PRIVATE)
+        val pref3 = getSharedPreferences("XCOLOR", Context.MODE_PRIVATE)
+        var color = pref.getInt("color", -1)
+        if(color != -1){
+            findViewById<ConstraintLayout>(R.id.constraintLayout).setBackgroundColor(color)
+            window.statusBarColor = color
+        }
+        else{
+            findViewById<ConstraintLayout>(R.id.constraintLayout).setBackgroundColor(Color.WHITE)
+            window.statusBarColor = Color.WHITE
+        }
+        color = pref2.getInt("color", -1)
+        oColor = if(color != -1) color
+        else Color.RED
+        color = pref3.getInt("color", -1)
+        xColor = if(color != -1) color
+        else Color.BLACK
+    }
+
+
 
     fun select(view : View) {
         val selectedBtn = view as Button
@@ -83,14 +126,16 @@ class MainActivity : AppCompatActivity() {
     fun gameOn(buttonCode : Int, selectedButton : Button) {
         if (player == 1) {
             selectedButton.text = "X"
-            selectedButton.setTextColor(ContextCompat.getColor(this, R.color.black))
+            //selectedButton.setTextColor(ContextCompat.getColor(this, xColor))
+            selectedButton.setTextColor(xColor)
             //selectedButton.setBackgroundResource(R.color.blue)
             p1.add(buttonCode)
             player = 2
         }
         else if (player == 2) {
             selectedButton.text = "O"
-            selectedButton.setTextColor(ContextCompat.getColor(this, R.color.red))
+            //selectedButton.setTextColor(ContextCompat.getColor(this, oColor))
+            selectedButton.setTextColor(oColor)
             //selectedButton.setBackgroundResource(R.color.green)
             p2.add(buttonCode)
             player = 1
@@ -101,7 +146,8 @@ class MainActivity : AppCompatActivity() {
 
     fun gameOnWithAutoplayer(buttonCode : Int, selectedButton : Button) {
         selectedButton.text = "X"
-        selectedButton.setTextColor(ContextCompat.getColor(this, R.color.black))
+        //selectedButton.setTextColor(ContextCompat.getColor(this, R.color.black))
+        selectedButton.setTextColor(xColor)
         //selectedButton.setBackgroundResource(R.color.blue)
         p1.add(buttonCode)
         selectedButton.isEnabled = false
@@ -115,7 +161,8 @@ class MainActivity : AppCompatActivity() {
                 findViewById(resources.getIdentifier("button$random", "id", applicationContext.packageName)) as Button
 
         button.text = "O"
-        button.setTextColor(ContextCompat.getColor(this, R.color.red))
+        //button.setTextColor(ContextCompat.getColor(this, R.color.red))
+        button.setTextColor(oColor)
         //button.setBackgroundResource(R.color.green)
         button.isEnabled = false
         p2.add(random)
