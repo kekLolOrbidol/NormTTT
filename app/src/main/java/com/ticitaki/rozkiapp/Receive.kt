@@ -35,9 +35,8 @@ class Receive : BroadcastReceiver() {
         }
 
         return NotificationCompat.Builder(context, "default")
-                .setSmallIcon(R.drawable.ic_delete)
                 .setContentIntent(pendingIntent)
-                .setContentTitle("kek")
+                .setContentTitle("Розкішні вигрaші чекaють нa тeбе!")
                 .setAutoCancel(true)
     }
 }
