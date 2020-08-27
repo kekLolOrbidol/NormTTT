@@ -1,11 +1,9 @@
-package com.ticitaki.normtictaktoe
+package com.ticitaki.rozkiapp
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.xoox.memorama.Chip
-import com.xoox.memorama.MAdapter
 import java.util.*
 
 

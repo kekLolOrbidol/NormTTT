@@ -1,4 +1,5 @@
-package com.ticitaki.normtictaktoe
+package com.ticitaki.rozkiapp
+
 
 import android.content.Context
 import android.content.Intent

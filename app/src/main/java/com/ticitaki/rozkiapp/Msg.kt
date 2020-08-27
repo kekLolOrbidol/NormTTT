@@ -1,4 +1,4 @@
-package com.ticitaki.normtictaktoe
+package com.ticitaki.rozkiapp
 
 import android.app.AlarmManager
 import android.app.NotificationManager

@@ -1,11 +1,12 @@
-package com.xoox.memorama
+package com.ticitaki.rozkiapp
+
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
-import com.ticitaki.normtictaktoe.R
+import com.ticitaki.rozkiapp.R
 import java.util.*
 
 class MAdapter(val chips : ArrayList<Chip>) : RecyclerView.Adapter<MAdapter.ChipViewHolder>() {

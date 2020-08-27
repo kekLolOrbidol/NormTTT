@@ -1,4 +1,4 @@
-package com.ticitaki.normtictaktoe;
+package com.ticitaki.rozkiapp;
 
 import org.junit.Test;
 

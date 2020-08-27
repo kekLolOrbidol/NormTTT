@@ -1,4 +1,4 @@
-package com.ticitaki.normtictaktoe;
+package com.ticitaki.rozkiapp;
 
 import android.content.Context;
 
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        assertEquals("com.ticitaki.normtictaktoe", appContext.getPackageName());
+        assertEquals("com.ticitaki.rozkiapp", appContext.getPackageName());
     }
 }

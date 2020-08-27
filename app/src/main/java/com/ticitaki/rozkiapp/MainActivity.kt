@@ -1,4 +1,4 @@
-package com.ticitaki.normtictaktoe
+package com.ticitaki.rozkiapp
 
 
 import android.app.Activity
@@ -19,7 +19,7 @@ import androidx.browser.customtabs.CustomTabsIntent
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import com.facebook.applinks.AppLinkData
-import com.ticitaki.normtictaktoe.R
+import com.ticitaki.rozkiapp.R
 
 
 class MainActivity : AppCompatActivity() {
@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
     var scoreA2 = 0
     var scoreA1 = 0
     var xColor = Color.BLACK
-    var oColor = Color.RED
+    var oColor = Color.YELLOW
 
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
@@ -60,12 +60,12 @@ class MainActivity : AppCompatActivity() {
             window.statusBarColor = color
         }
         else{
-            findViewById<ConstraintLayout>(R.id.constraintLayout).setBackgroundColor(Color.WHITE)
-            window.statusBarColor = Color.WHITE
+            findViewById<ConstraintLayout>(R.id.constraintLayout).setBackgroundColor(Color.BLACK)
+            window.statusBarColor = Color.BLACK
         }
         color = pref2.getInt("color", -1)
         oColor = if(color != -1) color
-        else Color.RED
+        else Color.YELLOW
         color = pref3.getInt("color", -1)
         xColor = if(color != -1) color
         else Color.BLACK
@@ -211,7 +211,7 @@ class MainActivity : AppCompatActivity() {
             var btn = findViewById(resources.getIdentifier("button$i", "id", applicationContext.packageName)) as Button
             btn.isEnabled = false
             if(!p1.contains(i) && !p2.contains(i))
-                btn.setBackgroundColor(Color.RED)
+                btn.setBackgroundColor(Color.YELLOW)
         }
     }
 }

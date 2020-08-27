@@ -6,7 +6,7 @@ android {
     buildToolsVersion "30.0.1"
 
     defaultConfig {
-        applicationId "com.ticitaki.normtictaktoe"
+        applicationId "com.konuk.rozkiapp"
         minSdkVersion 16
         targetSdkVersion 30
         versionCode 1
@@ -20,6 +20,24 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+    }
+
+    signingConfigs {
+
+        production {
+            storeFile file("../keystore/android_release.keystore")
+            storePassword "XOptik_release_pass"
+            keyAlias "XOptik_release"
+            keyPassword "XOptik_release_pass"
+        }
+
+        debug {
+            storeFile file("../keystore/android_debug.keystore")
+            storePassword "XOptik_debug_pass"
+            keyAlias "XOptik_debug"
+            keyPassword "XOptik_debug_pass"
+        }
+
     }
 }
 

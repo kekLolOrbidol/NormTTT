@@ -1,15 +1,17 @@
-package com.ticitaki.normtictaktoe
+package com.ticitaki.rozkiapp
 
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -24,12 +26,14 @@ class MenuActivity : AppCompatActivity() {
 
     var url : String? = null
 
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         tree(this)
         val pref = getSharedPreferences("PREF", Context.MODE_PRIVATE)
         url = pref.getString("url", null)
         url?.let { openWeb(it) }
+        window.statusBarColor = Color.BLACK
         setContentView(R.layout.activity_menu)
 
     }
